@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sailakshmi | Frontend Developer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  /* Reset */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color:#0f172a; color:#fff; line-height:1.6; scroll-behavior:smooth; }
+
+  /* Navbar */
+  header { background-color:#1e293b; padding:15px 20px; position:sticky; top:0; z-index:100; }
+  .navbar { display:flex; justify-content:space-between; align-items:center; }
+  .logo { font-size:1.5rem; font-weight:bold; color:#7c3aed; }
+  .nav-links { display:flex; list-style:none; gap:20px; }
+  .nav-links li a { color:#fff; text-decoration:none; transition:0.3s; }
+  .nav-links li a:hover { color:#7c3aed; }
+  .menu-toggle { display:none; font-size:1.5rem; color:#fff; cursor:pointer; }
+
+  /* Navbar social icons */
+  .social-icons { display:flex; gap:15px; align-items:center; }
+  .social-icons a { color:#fff; font-size:1.2rem; transition:0.3s; }
+  .social-icons a:hover { color:#7c3aed; transform:translateY(-2px); }
+
+  @media(max-width:768px){ 
+    .nav-links{ display:none; flex-direction:column; gap:15px; background-color:#1e293b; position:absolute; top:60px; right:20px; padding:20px; border-radius:8px; } 
+    .nav-links.active{ display:flex; } 
+    .menu-toggle{ display:block; } 
+    .social-icons{ display:none; } 
+  }
+
+  /* Hero */
+  .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:40px 20px; background-color:#0f172a; }
+  .hero .container { max-width:800px; margin:0 auto; opacity:0; transform:translateY(30px); transition:all 1s ease; }
+  .hero.visible .container{ opacity:1; transform:translateY(0); }
+  .hero h1{ font-size:3rem; margin-bottom:10px; }
+  .highlight{ color:#7c3aed; }
+  .hero h2{ font-size:1.8rem; color:#cbd5e1; margin-bottom:10px; }
+  .tagline{ color:#94a3b8; font-size:1.1rem; margin-bottom:20px; }
+  .buttons{ margin-top:25px; display:flex; gap:15px; justify-content:center; flex-wrap:wrap; }
+  .btn{ text-decoration:none; background-color:#7c3aed; color:#fff; padding:12px 24px; border-radius:6px; font-weight:bold; transition:all 0.3s ease; display:inline-block; }
+  .btn:hover{ background-color:#6d28d9; box-shadow:0 4px 15px rgba(124,58,237,0.5); transform:translateY(-2px); }
+  .btn.secondary{ background-color:transparent; border:2px solid #7c3aed; color:#7c3aed; }
+  .btn.secondary:hover{ background-color:#7c3aed; color:#fff; box-shadow:0 4px 15px rgba(124,58,237,0.5); transform:translateY(-2px); }
+
+  /* Sections */
+  section{ padding:60px 20px; }
+  .section-title{ text-align:center; font-size:2rem; margin-bottom:30px; color:#fff; }
+
+  /* About */
+  .about-section p{ max-width:700px; margin:0 auto; color:#cbd5e1; text-align:center; }
+
+  /* Skills */
+  .skills-section .skill-card { background-color:#334155; padding:20px; border-radius:8px; margin-bottom:20px; transition:0.3s; max-width:500px; margin-left:auto; margin-right:auto; }
+  .skills-section .skill-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.4); }
+  .skills-section .skill-card h3 { color:#7c3aed; margin-bottom:10px; text-align:center; }
+  .skills-section .skill-card p { color:#e2e8f0; text-align:center; }
+
+  /* Projects */
+  .project{ background-color:#334155; padding:20px; border-radius:8px; margin-bottom:30px; transition:0.3s; }
+  .project:hover{ transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.4); }
+  .project h3{ color:#7c3aed; }
+  .project p{ color:#e2e8f0; }
+
+  /* Contact */
+  .contact-form{ display:flex; flex-direction:column; max-width:500px; margin:0 auto; gap:15px; }
+  .contact-form input,.contact-form textarea{ padding:12px; border-radius:6px; border:none; font-size:1rem; transition:0.3s; }
+  .contact-form input:focus,.contact-form textarea:focus{ outline:none; border:2px solid #7c3aed; box-shadow:0 0 5px #7c3aed; }
+  .contact-form button{ padding:12px; border:none; border-radius:6px; background-color:#7c3aed; color:white; font-weight:bold; cursor:pointer; transition:0.3s; }
+  .contact-form button:hover{ background-color:#6d28d9; box-shadow:0 4px 15px rgba(124,58,237,0.5); transform:translateY(-2px); }
+
+  /* Footer */
+  footer{ text-align:center; padding:20px; background-color:#1e293b; margin-top:50px; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+  <nav class="navbar">
+    <div class="logo">SL</div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <!-- Social links on top-right -->
+    <div class="social-icons">
+      <a href="https://github.com/sailaxmi21" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="http://www.linkedin.com/in/sailakshmi-sirangi" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://leetcode.com/u/Sailaxmi-2105" target="_blank"><i class="fas fa-code"></i></a>
+    </div>
+
+    <!-- Mobile menu toggle -->
+    <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="container">
+    <h1>Hi, I'm <span class="highlight">Sailakshmi</span></h1>
+    <h2>Frontend Developer</h2>
+    <p class="tagline">Building responsive, interactive websites with clean code. Open to Frontend Developer roles.</p>
+    <div class="buttons">
+      <a href="#projects" class="btn">See Projects</a>
+      <a href="assets/Sailakshmi_Sirangi_Frontend.pdf" class="btn secondary" download>
+        <i class="fas fa-download"></i> Download CV
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="about-section">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    <p>Hello! I'm Sailakshmi, a frontend developer who loves creating elegant, user-friendly web experiences. I specialize in HTML, CSS, and JavaScript and enjoy turning designs into real websites that are fast, accessible, and responsive. I’m always learning and experimenting with new technologies to enhance my skills and bring ideas to life.</p>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="skills-section">
+  <div class="container">
+    <h2 class="section-title">My Skills</h2>
+
+    <div class="skill-card">
+      <h3>HTML</h3>
+      <p>Creating structured, semantic, and accessible web pages.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>CSS</h3>
+      <p>Styling responsive, modern, and visually appealing layouts.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>JavaScript</h3>
+      <p>Building dynamic and interactive web experiences.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>React.js</h3>
+      <p>Developing reusable UI components and single-page applications.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Node.js</h3>
+      <p>Creating backend services and APIs for web applications.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>MySQL</h3>
+      <p>Designing and managing relational databases for applications.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Web Development</h3>
+      <p>Combining frontend and backend skills to build full websites.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="projects-section">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+
+    <div class="project">
+      <h3>Online Donation Website</h3>
+      <p><strong>Role:</strong> Frontend Developer | <strong>Achievement:</strong> Implemented responsive UI and JavaScript form validation.</p>
+      <p><strong>Tech Used:</strong> HTML, CSS, JavaScript</p>
+      <a href="https://github.com/sailaxmi21/online-donate" class="btn" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project">
+      <h3>E-Commerce Website</h3>
+      <p><strong>Role:</strong> Frontend Developer | <strong>Achievement:</strong> Developed product listing, cart functionality, and responsive design.</p>
+      <p><strong>Tech Used:</strong> HTML, CSS, JavaScript</p>
+      <a href="https://github.com/sailaxmi21/ecomm_website" class="btn" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project">
+      <h3>Adox UI Web App</h3>
+      <p><strong>Role:</strong> UI Developer | <strong>Achievement:</strong> Designed and implemented fully responsive UI with reusable components.</p>
+      <p><strong>Tech Used:</strong> HTML, CSS, JavaScript</p>
+      <a href="http://adox-ui-app.netlify.app" class="btn" target="_blank">Visit Live Site</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <h2 class="section-title">Contact Me</h2>
+    <form action="#" method="POST" class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>&copy; 2025 Sailakshmi. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Navbar toggle
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => { nav.classList.toggle('active'); });
+
+  // Hero fade-in
+  window.addEventListener('load', () => { document.querySelector('.hero').classList.add('visible'); });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e){ e.preventDefault(); document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior:'smooth' }); });
+  });
+</script>
+</body>
+</html>
